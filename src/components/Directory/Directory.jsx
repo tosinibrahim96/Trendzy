@@ -12,7 +12,7 @@ class Directory extends Component {
           title: 'hats',
           imageUrl: 'https://urlzs.com/VpbQ7',
           id: 1,
-          linkUrl: 'hats'
+          linkUrl: ''
         },
         {
           title: 'jackets',
