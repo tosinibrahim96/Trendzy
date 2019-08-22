@@ -3,8 +3,6 @@ import SectionItem from '../SectionItem/SectionItem';
 import './SectionContainer.scss';
 
 function SectionContainer({ title, items }) {
-  console.log('items', items);
-
   return (
     <div className="shop-preview">
       <h1 className="title">{title.toUpperCase()}</h1>
