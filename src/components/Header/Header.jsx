@@ -32,8 +32,12 @@ const Header = ({ currentUser }) => {
   );
 };
 
-const mapStateToProps = state => {
-  const { user } = state;
+/**
+ * mapStateToProps receives state as parameter
+ * Here, we are destructuring the user objet from the state
+ *
+ */
+const mapStateToProps = ({ user }) => {
   return { currentUser: user.currentUser };
 };
 

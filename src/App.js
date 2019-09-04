@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from './components/Header/Header';
 import HomePage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shop';
@@ -48,18 +48,32 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signIn" component={AuthPage} />
+          <Route
+            path="/signIn"
+            render={() =>
+              this.props.currentUser ? <Redirect to="/" /> : <AuthPage />
+            }
+          />
         </Switch>
       </div>
     );
   }
 }
 
+/**
+ * mapStateToProps receives state as parameter
+ * Here, we are destructuring the user objet from the state
+ *
+ */
+const mapStateToProps = ({ user }) => {
+  return { currentUser: user.currentUser };
+};
+
 const setDispatchFunctionsAsProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   setDispatchFunctionsAsProps
 )(App);
