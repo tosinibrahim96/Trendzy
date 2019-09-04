@@ -38,7 +38,7 @@ class Directory extends Component {
           linkUrl: ''
         },
         {
-          title: 'mens',
+          title: 'men',
           imageUrl:
             'https://images.unsplash.com/photo-1521341057461-6eb5f40b07ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
           size: 'large',
