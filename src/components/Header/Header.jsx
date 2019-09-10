@@ -8,7 +8,7 @@ import CartIcon from '../Cart/CartIcon';
 import CartDropdown from '../CartDropdown/CartDropdown';
 import './Header.scss';
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hideCartDropdown }) => {
   return (
     <div className="header">
       <Link to="/">
@@ -32,7 +32,7 @@ const Header = ({ currentUser }) => {
         )}
         <CartIcon />
       </div>
-      <CartDropdown />
+      {hideCartDropdown ? '' : <CartDropdown />}
     </div>
   );
 };
@@ -42,8 +42,11 @@ const Header = ({ currentUser }) => {
  * Here, we are destructuring the user objet from the state
  *
  */
-const mapStateToProps = ({ user }) => {
-  return { currentUser: user.currentUser };
+const mapStateToProps = ({ user, cartDropdown }) => {
+  return {
+    currentUser: user.currentUser,
+    hideCartDropdown: cartDropdown.hideCartDropdown
+  };
 };
 
 export default connect(mapStateToProps)(Header);

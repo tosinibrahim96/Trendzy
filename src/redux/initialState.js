@@ -1,3 +1,1 @@
-export const initialState = {
-  currentUser: null
-};
+export const initialState = {};
