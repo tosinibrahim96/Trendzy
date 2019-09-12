@@ -1,4 +1,5 @@
 import React from 'react';
+import CustomButton from '../CustomButton/CustomButton';
 import './SectionItem.scss';
 
 function SectionItem({ price, imageUrl, name }) {
@@ -14,6 +15,7 @@ function SectionItem({ price, imageUrl, name }) {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
+      <CustomButton isInverted>Add to cart</CustomButton>
     </div>
   );
 }
