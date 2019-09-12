@@ -9,8 +9,8 @@ function SectionContainer({ title, items }) {
       <div className="preview">
         {items
           .filter((item, index) => index < 4)
-          .map(({ id, ...Props }) => (
-            <SectionItem key={id} {...Props} />
+          .map(item => (
+            <SectionItem key={item.id} item={item} />
           ))}
       </div>
     </div>

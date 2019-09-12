@@ -42,10 +42,10 @@ const Header = ({ currentUser, hideCartDropdown }) => {
  * Here, we are destructuring the user objet from the state
  *
  */
-const mapStateToProps = ({ user, cartDropdown }) => {
+const mapStateToProps = ({ user, cart }) => {
   return {
     currentUser: user.currentUser,
-    hideCartDropdown: cartDropdown.hideCartDropdown
+    hideCartDropdown: cart.hideCartDropdown
   };
 };
 
