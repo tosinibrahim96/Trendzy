@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import Header from './components/Header/Header';
-import HomePage from './pages/homepage/homepage';
-import ShopPage from './pages/shop/shop';
-import AuthPage from './pages/auth/authpage';
-import { auth, createUser } from './firebase/firebase.utils';
-import setCurrentUser from './redux/actions/userActions';
-import './App.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Header from "./components/Header/Header";
+import HomePage from "./pages/homepage/homepage";
+import ShopPage from "./pages/shop/shop";
+import AuthPage from "./pages/auth/authpage";
+import { auth, createUser } from "./firebase/firebase.utils";
+import setCurrentUser from "./redux/actions/userActions";
+import "./App.css";
 
 class App extends Component {
   unsubscribe = null;
