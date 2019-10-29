@@ -12,7 +12,7 @@ const CartDropDown = ({ cartItems }) => {
         {cartItems.map(cartItem => (
           <CartItem key={cartItem.id} item={cartItem} />
         ))}
-        <CustomButton>GO TO CHACKOUT</CustomButton>
+        <CustomButton>GO TO CHECKOUT</CustomButton>
       </div>
     </div>
   );
