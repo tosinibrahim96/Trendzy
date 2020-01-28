@@ -11,6 +11,7 @@ import "./App.css";
 
 class App extends Component {
   unsubscribe = null;
+  //hello
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
