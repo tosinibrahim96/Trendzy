@@ -1,12 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
-
-import { auth } from '../../firebase/firebase.utils.js';
-import CartIcon from '../CartIcon/CartIcon';
-import CartDropdown from '../CartDropdown/CartDropdown';
-import './Header.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { ReactComponent as Logo } from "../../assets/logo.svg";
+import { createStructuredSelector } from "reselect";
+import { auth } from "../../firebase/firebase.utils.js";
+import CartIcon from "../CartIcon/CartIcon";
+import CartDropdown from "../CartDropdown/CartDropdown";
+import { selectCurrentUser } from "../../redux/selectors/userSelectors";
+import { selectCartDropdownState } from "../../redux/selectors/cartSelectors";
+import "./Header.scss";
 
 const Header = ({ currentUser, hideCartDropdown }) => {
   return (
@@ -32,7 +34,7 @@ const Header = ({ currentUser, hideCartDropdown }) => {
         )}
         <CartIcon />
       </div>
-      {hideCartDropdown ? '' : <CartDropdown />}
+      {hideCartDropdown ? "" : <CartDropdown />}
     </div>
   );
 };
@@ -42,11 +44,9 @@ const Header = ({ currentUser, hideCartDropdown }) => {
  * Here, we are destructuring the user objet from the state
  *
  */
-const mapStateToProps = ({ user, cart }) => {
-  return {
-    currentUser: user.currentUser,
-    hideCartDropdown: cart.hideCartDropdown
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hideCartDropdown: selectCartDropdownState
+});
 
 export default connect(mapStateToProps)(Header);

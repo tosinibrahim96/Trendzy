@@ -9,6 +9,11 @@ export const selectCartItems = createSelector(
   cart => cart.cartItems
 );
 
+export const selectCartDropdownState = createSelector(
+  [selectCart],
+  cart => cart.hideCartDropdown
+);
+
 export const cartItemsCount = createSelector([selectCartItems], cartItems =>
   cartItems.reduce(
     (accumulator, cartItem) => accumulator + cartItem.quantity,
