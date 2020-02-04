@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/homepage/homepage";
 import ShopPage from "./pages/shop/shop";
 import AuthPage from "./pages/auth/authpage";
 import { auth, createUser } from "./firebase/firebase.utils";
+import { selectCurrentUser } from "./redux/selectors/userSelectors";
 import setCurrentUser from "./redux/actions/userActions";
 import "./App.css";
 
@@ -66,15 +68,12 @@ class App extends Component {
  * Here, we are destructuring the user objet from the state
  *
  */
-const mapStateToProps = ({ user }) => {
-  return { currentUser: user.currentUser };
-};
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
 
 const setDispatchFunctionAsProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-export default connect(
-  mapStateToProps,
-  setDispatchFunctionAsProps
-)(App);
+export default connect(mapStateToProps, setDispatchFunctionAsProps)(App);
