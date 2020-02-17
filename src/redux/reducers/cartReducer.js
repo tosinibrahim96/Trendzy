@@ -1,7 +1,7 @@
 import { actionTypes } from '../actions/actionTypes';
-import { addNewItemToCart,removeItemFromCart } from '../utils/cart.utils';
+import { addNewItemToCart,removeItemFromCart,reduceOrRemoveItem } from '../utils/cart.utils';
 
-const { TOGGLE_CART_DROPDOWN, ADD_ITEM_TO_CART,REMOVE_ITEM_FROM_CART } = actionTypes;
+const { TOGGLE_CART_DROPDOWN, ADD_ITEM_TO_CART,REMOVE_ITEM_FROM_CART,REDUCE_ITEM } = actionTypes;
 const INITIAL_STATE = {
   hideCartDropdown: true,
   cartItems: []
@@ -23,6 +23,11 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
           ...state,
           cartItems: removeItemFromCart(state.cartItems, action.payload)
         };
+      case REDUCE_ITEM:
+      return {
+        ...state,
+        cartItems: reduceOrRemoveItem(state.cartItems, action.payload)
+      };
     default:
       return state;
   }
