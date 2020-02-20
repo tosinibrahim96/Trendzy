@@ -1,63 +1,22 @@
-import React, { Component } from 'react';
-import MenuItem from '../MenuItem/MenuItem';
-import './Directory.scss';
+import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectHomepageData } from "../../redux/selectors/homepagedataSelectors";
+import MenuItem from "../MenuItem/MenuItem";
+import "./Directory.scss";
 
-class Directory extends Component {
-  constructor(props) {
-    super(props);
+export const Directory = ({homepageData}) => {
+  return (
+    <div className="directory-menu">
+      {homepageData.map(({ id, ...Props }) => {
+        return <MenuItem key={id} {...Props} />;
+      })}
+    </div>
+  );
+};
 
-    this.state = {
-      sections: [
-        {
-          title: 'hats',
-          imageUrl:
-            'https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1632&q=80',
-          id: 1,
-          linkUrl: ''
-        },
-        {
-          title: 'jackets',
-          imageUrl:
-            'https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=928&q=80',
-          id: 2,
-          linkUrl: ''
-        },
-        {
-          title: 'sneakers',
-          imageUrl:
-            'https://images.unsplash.com/photo-1514989940723-e8e51635b782?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-          id: 3,
-          linkUrl: ''
-        },
-        {
-          title: 'women',
-          imageUrl:
-            'https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=rb-1.2.1&auto=format&fit=crop&w=951&q=80',
-          size: 'large',
-          id: 4,
-          linkUrl: ''
-        },
-        {
-          title: 'men',
-          imageUrl:
-            'https://images.unsplash.com/photo-1521341057461-6eb5f40b07ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
-          size: 'large',
-          id: 5,
-          linkUrl: ''
-        }
-      ]
-    };
-  }
+const mapStateToProps = createStructuredSelector({
+  homepageData: selectHomepageData
+});
 
-  render() {
-    return (
-      <div className="directory-menu">
-        {this.state.sections.map(({ id, ...Props }) => {
-          return <MenuItem key={id} {...Props} />;
-        })}
-      </div>
-    );
-  }
-}
-
-export default Directory;
+export default connect(mapStateToProps)(Directory);

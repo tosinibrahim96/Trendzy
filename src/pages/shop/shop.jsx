@@ -1,24 +1,21 @@
-import React, { Component } from 'react';
-import SectionContainer from '../../components/SectionContainer/SectionContainer';
-import SHOP_DATA from './shop.data';
+import React from "react";
+import { connect } from "react-redux";
+import { selectShopPageData } from "../../redux/selectors/shopdataSelectors";
+import { createStructuredSelector } from "reselect";
+import SectionContainer from "../../components/SectionContainer/SectionContainer";
 
-export default class Shop extends Component {
-  constructor(props) {
-    super(props);
+const Shop = ({ shopData }) => {
+  return (
+    <div className="shop-page">
+      {shopData.map(({ id, ...Props }) => (
+        <SectionContainer key={id} {...Props} />
+      ))}
+    </div>
+  );
+};
 
-    this.state = {
-      collections: SHOP_DATA
-    };
-  }
+const mapStateToProps = createStructuredSelector({
+  shopData: selectShopPageData
+});
 
-  render() {
-    const { collections } = this.state;
-    return (
-      <div className="shop-page">
-        {collections.map(({ id, ...Props }) => (
-          <SectionContainer key={id} {...Props} />
-        ))}
-      </div>
-    );
-  }
-}
+export default connect(mapStateToProps)(Shop);
