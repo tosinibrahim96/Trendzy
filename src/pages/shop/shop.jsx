@@ -1,21 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
-import { selectShopPageData } from "../../redux/selectors/shopdataSelectors";
-import { createStructuredSelector } from "reselect";
-import SectionContainer from "../../components/SectionContainer/SectionContainer";
+import ShopCategories from "../../components/ShopCategories/ShopCategories";
 
-const Shop = ({ shopData }) => {
+const Shop = ( ) => {
   return (
     <div className="shop-page">
-      {shopData.map(({ id, ...Props }) => (
-        <SectionContainer key={id} {...Props} />
-      ))}
+      <ShopCategories />
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  shopData: selectShopPageData
-});
-
-export default connect(mapStateToProps)(Shop);
+export default Shop;
